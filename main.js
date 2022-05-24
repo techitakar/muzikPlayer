@@ -46,8 +46,8 @@ function loadSong(song){
             break;
     }
     title.innerText=songTitle;
-    audio.src=`./music/${song}.mp3`;
-    cover.src=`./images/${song}.jpg`;
+    audio.src=`./music/${song}.mp3`; //audio.src=1.mp3 is bascially <audio src="1.mp3" class="audio"></audio>
+    cover.src=`./images/${song}.jpg`; //cover is an img object, so cover.src=1.jpg is <img src="1.jpg" class="cover">
 }
 
 function playSong(){
@@ -55,7 +55,7 @@ function playSong(){
     toggle.classList.remove('bi-play-fill');
     toggle.classList.add('bi-pause-fill');
 
-    audio.play();
+    audio.play(); //.play() is a built in audio API
 }
 
 function pauseSong(){
@@ -63,7 +63,7 @@ function pauseSong(){
     toggle.classList.add('bi-play-fill');
     toggle.classList.remove('bi-pause-fill');
 
-    audio.pause();
+    audio.pause(); //.pause() is a built in audio API
 }
 
 function prevSong(){
@@ -91,18 +91,18 @@ function nextSong(){
 function updateProgress(e){
     // console.log(e.srcElement.currentTime);
     // console.log(e.srcElement.duration);
-    const {duration,currentTime}=e.srcElement;
-    const progressPercent=(currentTime/duration)*100;
-    progress.style.width=`${progressPercent}%`;
+    const {duration,currentTime}=e.srcElement; //API
+    const progressPercent=(currentTime/duration)*100; //eg. 1 mins out of 3 mins completed, 1/3 *100=30
+    progress.style.width=`${progressPercent}%`;//style.width=30%
 }
 
 function setProgress(e){
-    const width=this.clientWidth;
+    const width=this.clientWidth; //suppose clientWidth=300px
     // console.log(width);
-    const clickX=e.offsetX;
+    const clickX=e.offsetX;//suppose clickX=100px
     // console.log(clickX);
-    const duration=audio.duration;
-    audio.currentTime=(clickX/width)*duration;
+    const duration=audio.duration;//duaration is an API, duration=3 mins
+    audio.currentTime=(clickX/width)*duration;//currentTime is also an API= (100/300)*3mins=> 1 min
 }
 
 //Event Listeners
